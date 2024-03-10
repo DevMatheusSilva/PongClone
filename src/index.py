@@ -9,6 +9,9 @@ running = True
 
 pygame.display.set_caption("Poggers")
 
+# variaveis de fonte
+font = pygame.font.SysFont("Monospace", 50, True, False)
+
 # cores
 white = (255,255,255)
 
@@ -66,6 +69,12 @@ while running:
     
     screen.fill("black")
     
+    # renderização da pontuação
+    score_player1 = font.render(f"{player1}" , True, white)
+    score_player2 = font.render(f"{player2}" , True, white)
+    screen.blit(score_player1, (200, 10))
+    screen.blit(score_player2, (rack2_pos - 210, 10))
+    
     # logica de movimento
     if r1_move_up:
         rack1.y -= mov_speed
@@ -101,13 +110,15 @@ while running:
         ball_sp_x = -ball_sp_x
     
     # logica de colisao com as laterais
-    if ball.left <= 0 or ball.right >= screen.get_width():
+    if ball.left <= 0:
         ball.x = screen.get_width() // 2
         ball.y = screen.get_height() // 2
-        if ball.left <= 0:
-            player2 += 1
-        elif ball.right >= screen.get_width():
-            player1 += 1
+        player2 += 1
+    elif ball.right >= screen.get_width():
+        ball.x = screen.get_width() // 2
+        ball.y = screen.get_height() // 2
+        player1 += 1
+
     
     pygame.draw.rect(screen, white, rack1)
     pygame.draw.rect(screen, white, rack2)
