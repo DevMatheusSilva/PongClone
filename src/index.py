@@ -15,11 +15,17 @@ white = (255,255,255)
 # variaveis de sprite
 rack2_pos = screen.get_width() - 20
 
-# sprites
-rack1 = pygame.Rect(0, 0, 20, 80)
+# rack sprite
+rack1 = pygame.Rect(10, 0, 20, 80)
 r1_up_point = rack1.topleft
 r1_down_point = rack1.bottomleft
-rack2 = pygame.Rect(rack2_pos, 0, 20, 80)
+rack2 = pygame.Rect(rack2_pos - 10, 0, 20, 80)
+
+# ball sprite
+ball_radius = 10
+ball = pygame.Rect(screen.get_width() // 2 - ball_radius, screen.get_height() // 2 - ball_radius, ball_radius*2, ball_radius*2)
+ball_sp_x = 5
+ball_sp_y = 5
 
 # variaveis de movimento
 mov_speed = 10
@@ -27,6 +33,10 @@ r1_move_down = False
 r1_move_up = False
 r2_move_down = False
 r2_move_up = False
+
+# variaveis de score
+player1 = 0
+player2 = 0
 
 # loop principal
 while running:
@@ -77,9 +87,31 @@ while running:
         rack2.y = 0
     elif rack2.y + rack2.height > screen.get_height():
         rack2.y = screen.get_height() - rack2.height
+
+    #logica de movimento bola
+    ball.x += ball_sp_x
+    ball.y += ball_sp_y
+    
+    # logica de colisao vertical bola
+    if ball.top <= 0 or ball.bottom >= screen.get_height():
+        ball_sp_y = -ball_sp_y
         
+    # logica colisao com as racks
+    if ball.colliderect(rack1) or ball.colliderect(rack2):
+        ball_sp_x = -ball_sp_x
+    
+    # logica de colisao com as laterais
+    if ball.left <= 0 or ball.right >= screen.get_width():
+        ball.x = screen.get_width() // 2
+        ball.y = screen.get_height() // 2
+        if ball.left <= 0:
+            player2 += 1
+        elif ball.right >= screen.get_width():
+            player1 += 1
+    
     pygame.draw.rect(screen, white, rack1)
     pygame.draw.rect(screen, white, rack2)
+    pygame.draw.ellipse(screen, white, ball)
     
     pygame.display.flip()
     clock.tick(60)
