@@ -22,7 +22,7 @@ O PongClone é uma versão simples e divertida do clássico jogo Pong, onde dois
 
 1. Para iniciar o jogo acesse o seguinte caminho:
    ```
-   game/dist/
+   game/
    ``` 
 2. Execute o arquivo `index.py`.
 3. Será aberta a janela do game, fique esperto para começar a jogar imediatamente após isso, este game não possui sistema de menu inicial.
