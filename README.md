@@ -6,8 +6,6 @@ Bem-vindo ao PongClone! Este projeto é uma recriação do clássico jogo Pong, 
 
 O PongClone é uma versão simples e divertida do clássico jogo Pong, onde dois jogadores controlam paddles para rebater uma bola de um lado para o outro. Este projeto foi desenvolvido para fins educacionais e de entretenimento, permitindo explorar conceitos fundamentais de programação de jogos.
 
-![image ](https://github.com/user-attachments/assets/54d638d0-713d-4f5d-a853-add4d6f76d01)
-
 ## Funcionalidades 🛠️
 
 - **Jogo para Dois Jogadores**: Controle dos paddles por dois jogadores.
